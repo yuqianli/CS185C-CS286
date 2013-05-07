@@ -495,7 +495,7 @@ static NSString *kApiSecret = @"e4070331e81e43de67c009c8f7ace326";
 					cell.textLabel.text = @"Call Cinequest Ticketing Line";
 					break;
 				case 1:
-					cell.textLabel.text = @"Email Film Detail";
+					cell.textLabel.text = @"Shere This Event With Others";
 					break;
 				default:
 					break;
@@ -546,15 +546,20 @@ static NSString *kApiSecret = @"e4070331e81e43de67c009c8f7ace326";
 				break;
 			}
 			case 1: {
-				MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
-				NSString *friendlyMessage = @"Hey, I found an interesting film from Cinequest. Check it out!";
+                
+                NSString *friendlyMessage = @"Hey, I found this interesting event from Cinequest. Check it out!";
 				NSString *messageBody = [NSString stringWithFormat:@"%@\n http://mobile.cinequest.org/event_view.php?eid=%d",friendlyMessage,myData.prog_id];
-				controller.mailComposeDelegate = self;
-				[controller setSubject:myData.title];
-				[controller setMessageBody:messageBody isHTML:NO]; 
-				delegate.isPresentingModalView = YES;
-				[self.navigationController presentModalViewController:controller animated:YES];
-				[controller release];
+                
+                NSArray *activityItems = [NSArray arrayWithObjects: messageBody, nil];
+                
+                UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+                [self presentViewController:activityController animated:YES completion:nil];
+                [tableView deselectRowAtIndexPath:indexPath animated:NO];
+               
+                
+                
+                
+                
 				break;
 			}
 			default:

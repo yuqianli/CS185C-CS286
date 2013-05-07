@@ -520,7 +520,7 @@ static NSString *kApiSecret = @"e4070331e81e43de67c009c8f7ace326";
 					cell.textLabel.text = @"Call Cinequest Ticketing Line";
 					break;
 				case 1:
-					cell.textLabel.text = @"Share This File With Others";
+					cell.textLabel.text = @"Share This Film With Others";
 					break;
 				default:
 					break;
@@ -571,13 +571,17 @@ static NSString *kApiSecret = @"e4070331e81e43de67c009c8f7ace326";
 				break;
 			}
 			case 1: {
+                
+                UIImage *ima = [UIImage imageWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString:[dataDictionary objectForKey : @"imageURL"]]]];
+                
                 NSString *friendlyMessage = @"Hey, I found an interesting film from Cinequest. Check it out!";
 				NSString *messageBody = [NSString stringWithFormat:@"%@\n http://mobile.cinequest.org/event_view.php?eid=%d",friendlyMessage,myFilmData.prog_id];
-                NSArray *activityItems = [NSArray arrayWithObjects: messageBody, myFilmData.title , nil];
+                
+                NSArray *activityItems = [NSArray arrayWithObjects: messageBody, ima, nil];
                 
                 UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
                 [self presentViewController:activityController animated:YES completion:nil];
-                
+                [atableView deselectRowAtIndexPath:indexPath animated:NO];
 				break;
 			}
 			default:

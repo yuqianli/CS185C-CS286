@@ -26,6 +26,7 @@
 	IBOutlet UIWebView					*webView;
 	IBOutlet UITableView				*_tableView;
 	IBOutlet UIActivityIndicatorView	*activityIndicator;
+    
 	
 	BOOL isDVD;
 	
@@ -35,6 +36,7 @@
 	
 	CinequestAppDelegate *delegate;
 	NSMutableArray *mySchedule;
+    
 }
 
 @property (readwrite) BOOL isDVD;
