@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -69,7 +69,20 @@
 		76BDA19D10FAFF8C00B691C3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BDA19C10FAFF8C00B691C3 /* MessageUI.framework */; };
 		76BDA3CC10FB033500B691C3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BDA3CB10FB033500B691C3 /* libxml2.dylib */; };
 		76BDA48E10FB08A600B691C3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 76BDA48D10FB08A600B691C3 /* libsqlite3.dylib */; };
+		77DA18651738BE5F00B21850 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA18641738BE5F00B21850 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		773EC6C31738BD11002F0B9F /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyPlist\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -166,6 +179,7 @@
 		76BDA19C10FAFF8C00B691C3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		76BDA3CB10FB033500B691C3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		76BDA48D10FB08A600B691C3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		77DA18641738BE5F00B21850 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Cinequest-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cinequest-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +213,7 @@
 		29B97314FDCFA39411CA2CEA /* Cinequest */ = {
 			isa = PBXGroup;
 			children = (
+				77DA18641738BE5F00B21850 /* Default-568h@2x.png */,
 				76BDA0D910FAFCA400B691C3 /* Classes */,
 				76BDA0D710FAFC5600B691C3 /* AppDelegate */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -470,6 +485,7 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 			);
 			buildRules = (
+				773EC6C31738BD11002F0B9F /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -483,9 +499,16 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cinequest" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Cinequest */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -526,6 +549,7 @@
 				76BDA16310FAFDA100B691C3 /* dvd_icon_small.png in Resources */,
 				76BDA16410FAFDA100B691C3 /* trans_forums_small.png in Resources */,
 				76BDA16510FAFDA100B691C3 /* FBConnect.bundle in Resources */,
+				77DA18651738BE5F00B21850 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +604,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cinequest_Prefix.pch;
 				INFOPLIST_FILE = "Cinequest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = Cinequest;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -592,11 +618,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cinequest_Prefix.pch;
 				INFOPLIST_FILE = "Cinequest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = Cinequest;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
-		6803B6011111217C0030F50A /* Distribution */ = {
+		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -606,36 +634,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
-				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
-			};
-			name = Distribution;
-		};
-		6803B6021111217C0030F50A /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Cinequest_Prefix.pch;
-				INFOPLIST_FILE = "Cinequest-Info.plist";
-				PRODUCT_NAME = Cinequest;
-			};
-			name = Distribution;
-		};
-		C01FCF4F08A954540054247B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				OTHER_LDFLAGS = "-lxml2";
-				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -649,8 +649,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_LDFLAGS = "-lxml2";
-				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -662,7 +661,6 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				6803B6021111217C0030F50A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -672,7 +670,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				6803B6011111217C0030F50A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

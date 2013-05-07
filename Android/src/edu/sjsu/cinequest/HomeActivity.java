@@ -231,7 +231,11 @@ public class HomeActivity extends Activity {
         // Handle item selection
         switch (item.getItemId()) {
         	case R.id.menu_option_about:
-	            DialogPrompt.showAppAboutDialog(this);
+	            //DialogPrompt.showAppAboutDialog(this);
+        		//Intent intent = new Intent(getApplicationContext(),
+					//com.google.zxing.client.android.CaptureActivity.
+        			//	class);
+        			//	startActivity(intent);
 	            return true;	        	            
 	        
 	        default:
