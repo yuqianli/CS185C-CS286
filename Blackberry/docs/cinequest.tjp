@@ -1,0 +1,360 @@
+project cinequest "Cinequest" "1.0" 2008-11-16 - 2008-12-31 {
+  # Hide the clock time. Only show the date.
+  timeformat "%Y-%m-%d"
+  workinghours mon - sun 9:00 - 17:00
+  weekstartsmonday
+
+  scenario plan "Plan" {
+    # Compute when the task will be ready based on the already
+    # done work and the current date.
+    projection { sloppy }
+  }
+}
+
+resource dev "Developers" {
+  resource aaditya "Aaditya cs160_113"
+  resource kevin "Kevin cs160_109"
+  resource tim "Tim cs160_110"
+  resource travis "Travis cs160_104"
+  resource ian "Ian cs160_108"
+  resource justin "Justin cs160_105"
+  resource cay "Cay Horstmann"
+}
+
+task impl "Implementation" {
+  priority 500
+
+  task parse1 "Finish all parsers except events/forums/DVDs" {
+    effort 2d
+    allocate kevin
+    depends milestones.start
+    priority 900
+    complete 100
+  }
+
+  task parse1mockdummy "Mock queries with dummy data" {
+    effort 2d
+    allocate tim
+    depends !parse1
+    priority 900
+    complete 100
+  }
+
+  task parse1mockoslo "Mock queries on oslo" {
+    effort 2d
+    allocate tim
+    depends !parse1mockdummy
+    priority 900
+    complete 100
+  }
+
+  task queries1 "Finish all queries except events/forums/DVDs" {
+    effort 2d
+    allocate kevin
+    depends milestones.start
+    priority 900
+    complete 100
+  }
+
+  task queryperf "Measure query performance on actual devices" {
+    effort 5d
+    allocate tim
+    depends !parse1mockoslo,!autosign
+    priority 800
+    complete 0  }
+
+  task imageman "Implement image manager" {
+    effort 2d
+    allocate cay
+    depends milestones.start
+    priority 800
+    complete 100
+  }
+
+  task imagemanmockdummy "Mock image manager with dummy data" {
+    effort 1d
+    allocate cay
+    depends !imageman
+    priority 800
+    complete 100
+  }
+
+  task imagemanmockoslo  "Mock image manager with files on Oslo" {
+    effort 2d
+    allocate tim
+    depends !imageman
+    priority 800
+    complete 100
+  }
+
+  task prefetchimg "Implement prefetching of images" {
+    effort 1d
+    allocate cay
+    depends !imageman,!queries1
+    priority 750
+    complete 100
+  }
+
+  task cachedesign "Finish cache design" {
+    effort 14d
+    allocate aaditya
+    depends milestones.start
+    priority 700
+    complete 100
+  }
+
+  task reviewcache "Review cache design" {
+    effort 1d
+    allocate cay
+    depends !cachedesign
+    priority 900
+    complete 100
+  }
+
+  task implcache "Implement Cache" {
+    effort 8d
+    allocate aaditya
+    depends !reviewcache
+    priority 700
+    complete 100
+  }
+
+  task htmlparser "Reimplement HTML parser" {
+    effort 18d
+    allocate travis
+    depends milestones.start
+    priority 900
+    complete 0
+  }
+
+  task htmlparsertest  "HTML parser test with real tags (entites, MS codepage problems, tags)" {
+    effort 2d
+    allocate cay
+    depends milestones.start
+    priority 900
+    complete 100
+  }
+
+  task desconnfail "Design behavior for connection failure" {
+    effort 2d
+    allocate travis
+    depends !htmlparser
+    priority 700
+    complete 0
+  }
+
+  task implconnfail "Implement connection failure handling" {
+    effort 2d
+    allocate travis
+    depends !desconnfail
+    priority 700
+    complete 0
+  }
+
+  task testonnfail "Test connection failure handling on actual devices" {
+    effort 2d
+    allocate kevin
+    depends !implconnfail
+    priority 700
+    complete 0
+  }
+
+  task autounit "Automate unit testing" {
+    effort 2d
+    allocate cay
+    depends milestones.start
+    priority 800
+    complete 100
+  }
+
+  task autobuild "Automate build of deployable file (with images etc.)" {
+    effort 2d
+    allocate cay
+    depends milestones.start
+    priority 500
+    complete 100
+  }
+
+  task autosign "Automate signing" {
+    effort 10d
+    allocate kevin
+    depends milestones.start
+    priority 400
+    complete 100
+  }
+
+  task firstscr "UI First screen" {
+    effort 5d
+    allocate ian
+    depends milestones.start
+    priority 800
+    complete 100
+  }
+
+  task listbox "List box of movies" {
+    effort 5d
+    allocate ian
+    depends !firstscr
+    priority 800
+    complete 100
+  }
+
+  task moviescr "Single movie screen" {
+    effort 10d
+    allocate justin
+    depends milestones.start
+    priority 800
+    complete 100
+  }
+
+  task searchscr "Additional search screens" {
+    effort 5d
+    allocate ian
+    depends milestones.start
+    priority 700
+    complete 100
+  }
+
+  task homescr "Home screen" {
+    effort 10d
+    allocate justin
+    depends milestones.start
+    priority 700
+    complete 100
+  }
+
+  task uidocclean "Clean up outdated UI doc" {
+    effort 2d
+    allocate tim
+    depends !listbox
+    priority 200
+    complete 100
+  }
+
+  task uidoc1 "Produce UI doc with real screen shots 1" {
+    effort 2d
+    allocate travis
+    depends !firstscr, !listbox, !moviescr, !searchscr, !homescr
+    priority 700
+    complete 0
+  }
+
+  task menus "Screen menus" {
+    effort 2d
+    allocate ian
+    depends milestones.start
+    priority 700
+    complete 100
+  }
+
+  task esc "Backwards movement with Esc" {
+    effort 1d
+    allocate ian
+    depends milestones.start
+    priority 600
+    complete 100
+  }
+
+  task eventforumxml "Finalize event and forum XML" {
+    effort 2d
+    allocate cay
+    depends milestones.start
+    priority 400
+    complete 100
+  }
+
+  task eventforumparse "Event and forum parsing" {
+    effort 2d
+    allocate kevin
+    depends !eventforumxml
+    complete 100
+  }
+
+  task eventforumscr "Event and forum screens" {
+    effort 2d
+    allocate ian
+    depends !eventforumparse
+    complete 100
+  }
+
+  task dvdparse "DVD parsing" {
+    effort 2d
+    allocate kevin
+    depends milestones.start
+    priority 300
+    complete 100
+  }
+
+  task dvdscr "DVD screens" {
+    effort 2d
+    allocate justin
+    depends !dvdparse
+    complete 100
+  }
+
+
+  task uidoc2  "Produce UI doc with real screen shots 2" {
+    effort 2d
+    allocate travis
+    depends !eventforumscr,!dvdscr
+    complete 0
+  }
+
+  task uiglitz "Final UI glitz" {
+    effort 2d
+    allocate ian
+    depends !uidoc1
+    complete 0
+  }
+
+  task offseason_parsing "Off season parsing" {
+    effort 3d
+    allocate kevin
+    depends milestones.start
+    priority 350
+    complete 100
+  }
+
+  task offseason_screen "Off season screen" {
+    effort 3d
+    allocate justin
+    depends !offseason_parsing
+    priority 350
+    complete 100
+  }
+
+}
+
+task milestones "Milestones" {
+  task start "Project start" {
+    milestone
+    start 2008-11-16
+  }
+}
+
+taskreport "Gantt Chart" {
+  headline "Project Gantt Chart"
+  columns hierarchindex, name, start, end, effort, resources, chart
+  timeformat "%a %m-%d"
+  loadunit days
+  hideresource 1
+}
+
+resourcereport "Resource Graph" {
+  headline "Resource Allocation Graph"
+  columns no, name, utilization, freeload, chart
+  loadunit days
+  hidetask 1
+}
+
+xmlreport "cinequest.tjx" {
+}
+
+# include "CompletedWork.tji"
+
+export "CompletedWork.tji" {
+  start 2008-11-16
+  end 2008-11-23
+  properties bookings
+  hideresource 0
+}

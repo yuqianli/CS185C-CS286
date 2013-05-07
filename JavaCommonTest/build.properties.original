@@ -1,0 +1,6 @@
+# Edit these properties to match your local system, then save as 
+# build.properties.
+
+# Make sure not to add build.properties to version control.
+ 
+junit3.home=/home/apps/junit3.8.2

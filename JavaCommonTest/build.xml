@@ -1,0 +1,44 @@
+<project name="Cinequest" default="test">
+   <target name="init">
+      <property file="build.properties" />
+      <fail unless="junit3.home" message="Set junit3.home in build.properties"/>
+
+      <property name="build.dir" value="build" />
+      <property name="test.results" value="${build.dir}/testresults" />
+      <property name="common-src.dir" value="../JavaCommon/src" />
+      <property name="test.dir" value="test" />
+      
+      <mkdir dir="${build.dir}" />
+      <delete dir="${test.results}" quiet="true" />
+   </target>
+
+   <target name="test" depends="init">
+      <javac destdir="${build.dir}" listfiles="yes">
+         <src>
+            <pathelement location="${common-src.dir}"/>
+            <pathelement location="${test.dir}"/>
+   <!--         <pathelement location="fake-rim"/> -->
+         </src>
+         <classpath>
+            <pathelement location="${junit3.home}/junit.jar" />
+         </classpath>
+      </javac>
+      <mkdir dir="${test.results}" />
+      <junit>
+         <classpath>
+            <pathelement location="${build.dir}" />
+            <pathelement location="${junit3.home}/junit.jar" />
+         </classpath>
+         
+         <formatter type="plain" />
+         
+         <batchtest todir="${test.results}">
+            <fileset dir="${test.dir}">
+               <include name="**/*Test.java" />
+            </fileset>
+         </batchtest>
+
+      </junit>
+      <echo message="Detailed test results are in ${test.results}"/>
+   </target>
+</project>
