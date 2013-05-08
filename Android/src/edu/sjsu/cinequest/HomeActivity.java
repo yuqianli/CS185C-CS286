@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -53,6 +54,18 @@ public class HomeActivity extends Activity {
 	private static QueryManager queryManager;
 	private static ImageManager imageManager;
 	private static User user;
+
+	private static final String QR_CINEQUEST = "cinequest";
+	private static final String QR_URL = "url";
+	private static final String QR_VIDEO = "video";
+	private static final String QR_AUDIO = "audio";
+	private static final String QR_FILM = "fild";
+	private static final String QR_SCHEDULE = "schedule";
+	private static final String QR_MAP = "map";
+	private static final String QR_TEXT = "text";
+	private static final String QR_PHONE = "phone";
+	private static final String QR_SMS = "sms";
+	private static final String QR_CONTACT = "contact";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -271,11 +284,43 @@ public class HomeActivity extends Activity {
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(
 				requestCode, resultCode, data);
 		if (scanResult != null) {
-			Toast.makeText(
-					this,
-					"Format:" + scanResult.getFormatName() + ", Content"
-							+ scanResult.getContents(), Toast.LENGTH_LONG)
-					.show();
+			HandleQRCodeEvents(scanResult);
+		}
+
+	}
+
+	/*
+	 * Xiaohan: Handle the events from QRCodeScanner
+	 */
+	private void HandleQRCodeEvents(IntentResult scanResult) {
+
+		/*
+		Toast.makeText(
+				this,
+				"Format:" + scanResult.getFormatName() + ", Content:"
+						+ scanResult.getContents(), Toast.LENGTH_LONG).show();
+		*/
+
+		try {
+			String content = scanResult.getContents();
+			String parts[] = content.split("::");
+			if (parts[0].equals(QR_CINEQUEST)) {
+				String schema = parts[1];
+				String url = parts[2];
+				if (schema.equals(QR_VIDEO)) {
+					Uri uri = Uri.parse(url);
+					startActivity(new Intent(Intent.ACTION_VIEW, uri));
+				}
+
+			} else {
+				Toast.makeText(this, "Not a cinequest request",
+						Toast.LENGTH_LONG).show();
+			}
+		} catch (Exception e) {
+			Toast.makeText(this,
+					"Can't process this content" + scanResult.getContents(),
+					Toast.LENGTH_LONG).show();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -317,5 +362,6 @@ public class HomeActivity extends Activity {
 
 			return v;
 		}
+
 	}
 }
