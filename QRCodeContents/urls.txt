@@ -1,2 +1,3 @@
-cinequest::video::http://www.youtube.com/watch?feature=player_embedded&v=mX2r7FS-srY
-
+http://www.youtube.com/watch?feature=player_embedded&v=mX2r7FS-srY
+geo:37.332924,-121.887088?z=17&q= 37.332924,-121.887088(camera 12)
+http://qrcode.kaywa.com/dashboard/

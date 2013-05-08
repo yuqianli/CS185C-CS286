@@ -56,16 +56,9 @@ public class HomeActivity extends Activity {
 	private static User user;
 
 	private static final String QR_CINEQUEST = "cinequest";
-	private static final String QR_URL = "url";
-	private static final String QR_VIDEO = "video";
-	private static final String QR_AUDIO = "audio";
 	private static final String QR_FILM = "fild";
-	private static final String QR_SCHEDULE = "schedule";
-	private static final String QR_MAP = "map";
-	private static final String QR_TEXT = "text";
 	private static final String QR_PHONE = "phone";
 	private static final String QR_SMS = "sms";
-	private static final String QR_CONTACT = "contact";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -294,27 +287,26 @@ public class HomeActivity extends Activity {
 	 */
 	private void HandleQRCodeEvents(IntentResult scanResult) {
 
-		/*
 		Toast.makeText(
 				this,
 				"Format:" + scanResult.getFormatName() + ", Content:"
 						+ scanResult.getContents(), Toast.LENGTH_LONG).show();
-		*/
 
 		try {
 			String content = scanResult.getContents();
+			String format = scanResult.getFormatName();
 			String parts[] = content.split("::");
 			if (parts[0].equals(QR_CINEQUEST)) {
+				/*
 				String schema = parts[1];
-				String url = parts[2];
 				if (schema.equals(QR_VIDEO)) {
-					Uri uri = Uri.parse(url);
-					startActivity(new Intent(Intent.ACTION_VIEW, uri));
+					
 				}
+				*/
 
 			} else {
-				Toast.makeText(this, "Not a cinequest request",
-						Toast.LENGTH_LONG).show();
+				Uri uri = Uri.parse(content);
+				startActivity(new Intent(Intent.ACTION_VIEW, uri));
 			}
 		} catch (Exception e) {
 			Toast.makeText(this,

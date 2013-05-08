@@ -1,0 +1,8 @@
+local.properties
+build.properties
+build
+bin
+.project
+.classpath
+.settings
+.bin
