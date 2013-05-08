@@ -94,11 +94,12 @@ public final class EncodeActivity extends Activity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.menu_share:
-        share();
-        return true;
-      case R.id.menu_encode:
+	  int id = item.getItemId();
+	  if(id == R.id.menu_share){
+		  share();
+		  return true;
+	  }else if( id == R.id.menu_encode){
+		  
         Intent intent = getIntent();
         if (intent == null) {
           return false;
@@ -107,9 +108,8 @@ public final class EncodeActivity extends Activity {
         startActivity(intent);
         finish();
         return true;
-      default:
-        return false;
-    }
+	  }
+      return false;
   }
   
   private void share() {

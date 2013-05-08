@@ -16,8 +16,6 @@
 
 package com.google.zxing.client.android;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -29,6 +27,8 @@ import java.net.URLConnection;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+
+import android.util.Log;
 
 /**
  * Utility methods for retrieving content over HTTP using the more-supported {@code java.net} classes
@@ -104,11 +104,11 @@ public final class HttpHelper {
       } catch (NullPointerException npe) {
         // this is an Android bug: http://code.google.com/p/android/issues/detail?id=16895
         Log.w(TAG, "Bad URI? " + uri);
-        throw new IOException(npe);
+        throw new IOException();
       } catch (IllegalArgumentException iae) {
         // Also seen this in the wild, not sure what to make of it. Probably a bad URL
         Log.w(TAG, "Bad URI? " + uri);
-        throw new IOException(iae);
+        throw new IOException();
       }
       int responseCode;
       try {
@@ -116,7 +116,7 @@ public final class HttpHelper {
       } catch (NullPointerException npe) {
         // this is maybe this Android bug: http://code.google.com/p/android/issues/detail?id=15554
         Log.w(TAG, "Bad URI? " + uri);
-        throw new IOException(npe);
+        throw new IOException();
       }
       if (responseCode != HttpURLConnection.HTTP_OK) {
         throw new IOException("Bad HTTP response: " + responseCode);
@@ -185,11 +185,11 @@ public final class HttpHelper {
       } catch (NullPointerException npe) {
         // this is an Android bug: http://code.google.com/p/android/issues/detail?id=16895
         Log.w(TAG, "Bad URI? " + uri);
-        throw new IOException(npe);
+        throw new IOException();
       } catch (IllegalArgumentException iae) {
         // Also seen this in the wild, not sure what to make of it. Probably a bad URL
         Log.w(TAG, "Bad URI? " + uri);
-        throw new IOException(iae);
+        throw new IOException();
       }
       int responseCode;
       try {
@@ -197,7 +197,7 @@ public final class HttpHelper {
       } catch (NullPointerException npe) {
         // this is maybe this Android bug: http://code.google.com/p/android/issues/detail?id=15554
         Log.w(TAG, "Bad URI? " + uri);
-        throw new IOException(npe);
+        throw new IOException();
       }
       switch (responseCode) {
         case HttpURLConnection.HTTP_MULT_CHOICE:

@@ -112,6 +112,7 @@ public final class HistoryActivity extends ListActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
+    /*
       case R.id.menu_history_send:
         CharSequence history = historyManager.buildHistory();
         Uri historyFile = HistoryManager.saveHistory(history.toString());
@@ -152,7 +153,9 @@ public final class HistoryActivity extends ListActivity {
         break;
       default:
         return super.onOptionsItemSelected(item);
+         */
     }
+   
     return true;
   }
 

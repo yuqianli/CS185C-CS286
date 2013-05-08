@@ -34,6 +34,7 @@ public final class GingerbreadOpenCameraInterface implements OpenCameraInterface
    */
   @Override
   public Camera open() {
+	  /*
     
     int numCameras = Camera.getNumberOfCameras();
     if (numCameras == 0) {
@@ -61,6 +62,8 @@ public final class GingerbreadOpenCameraInterface implements OpenCameraInterface
     }
 
     return camera;
+      */
+	  return Camera.open();
   }
 
 }
