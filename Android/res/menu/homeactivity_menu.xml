@@ -5,6 +5,11 @@
   <item 
    	android:id="@+id/menu_option_about"
    	android:icon="@drawable/about"
+    android:title="About" 
+   />
+   <item 
+   	android:id="@+id/menu_option_qrcode"
+   	android:icon="@drawable/qrcode"
     android:title="QRCode" 
    />
    
