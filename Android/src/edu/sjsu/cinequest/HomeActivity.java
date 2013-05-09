@@ -55,10 +55,11 @@ public class HomeActivity extends Activity {
 	private static ImageManager imageManager;
 	private static User user;
 
-	private static final String QR_CINEQUEST = "cinequest";
-	private static final String QR_FILM = "fild";
-	private static final String QR_PHONE = "phone";
-	private static final String QR_SMS = "sms";
+	private static final String QR_CINEQUEST = "CINEQUEST";
+	private static final String QR_FILM = "FILM";
+	private static final String QR_TEL = "TEL";
+	private static final String QR_SMS = "SMSTO";
+	private static final String QR_VCARD = "VCARD";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -287,23 +288,29 @@ public class HomeActivity extends Activity {
 	 */
 	private void HandleQRCodeEvents(IntentResult scanResult) {
 
-		Toast.makeText(
-				this,
-				"Format:" + scanResult.getFormatName() + ", Content:"
-						+ scanResult.getContents(), Toast.LENGTH_LONG).show();
+		System.out.println("Format:" + scanResult.getFormatName()
+				+ ", Content:" + scanResult.getContents());
 
 		try {
 			String content = scanResult.getContents();
-			String format = scanResult.getFormatName();
-			String parts[] = content.split("::");
-			if (parts[0].equals(QR_CINEQUEST)) {
-				/*
-				String schema = parts[1];
-				if (schema.equals(QR_VIDEO)) {
+			String parts[] = content.split(":");
+			String schema = parts[0];
+			if (schema.equals(QR_CINEQUEST)) {
+				String fun = parts[1];
+				if (fun.equals(QR_FILM)) {
 					
 				}
-				*/
 
+			} else if (schema.equals(QR_SMS)) {
+				Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+				sendIntent.setType("vnd.android-dir/mms-sms");
+				sendIntent.putExtra("address", parts[1]);
+				sendIntent.putExtra("sms_body", parts[2]);
+				startActivity(sendIntent);
+			} else if (schema.equals(QR_TEL)) {
+				Intent telIntent = new Intent(Intent.ACTION_DIAL);
+				telIntent.setData(Uri.parse("tel:" + parts[1]));
+				startActivity(telIntent);
 			} else {
 				Uri uri = Uri.parse(content);
 				startActivity(new Intent(Intent.ACTION_VIEW, uri));
