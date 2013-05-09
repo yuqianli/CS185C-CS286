@@ -158,7 +158,7 @@ public class MainActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(MainActivity.this);
-			pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading Places..."));
+			pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading Near By Places..."));
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
 			pDialog.show();
@@ -176,7 +176,7 @@ public class MainActivity extends Activity {
 				// If you want all types places make it as null
 				// Check list of types supported by google
 				// 
-				String types = "movie_theater|cafe|restaurant|food"; // Listing places only cafes, restaurants
+				String types = "movie_theater|cafe|restaurant|food"; // Listing places
 				
 				// Radius in meters - increase this value if you don't find any places
 				double radius = 3000; // 1000 meters 
