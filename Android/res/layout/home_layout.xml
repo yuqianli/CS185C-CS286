@@ -35,6 +35,16 @@
     	android:layout_marginRight="3dip"
     	android:layout_marginTop="5dip"    	    	
 	/>
+
+    <Button
+        android:id="@+id/qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/goto_festival_button"
+        android:layout_alignTop="@+id/goto_festival_button"
+        android:layout_centerHorizontal="true"
+        android:text="QRCode" />
+
     </RelativeLayout>
    
   

@@ -131,6 +131,15 @@ public class HomeActivity extends Activity {
 				startActivityForResult(i, 0);
 			}
 		});
+
+		Button qrcodeButton = (Button) findViewById(R.id.qrcode);
+		qrcodeButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				startQRCodeScanner();
+			}
+		});
 	}
 
 	/**
@@ -262,15 +271,19 @@ public class HomeActivity extends Activity {
 			DialogPrompt.showAppAboutDialog(this);
 			return true;
 		case R.id.menu_option_qrcode:
-			IntentIntegrator integrator = new IntentIntegrator(this);
-			integrator.initiateScan(IntentIntegrator.QR_CODE_TYPES, this,
-					com.google.zxing.client.android.CaptureActivity.class);
+			startQRCodeScanner();
 			return true;
 
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 
+	}
+
+	private void startQRCodeScanner() {
+		IntentIntegrator integrator = new IntentIntegrator(this);
+		integrator.initiateScan(IntentIntegrator.QR_CODE_TYPES, this,
+				com.google.zxing.client.android.CaptureActivity.class);
 	}
 
 	@Override
