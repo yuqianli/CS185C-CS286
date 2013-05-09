@@ -1,14 +1,20 @@
 package edu.sjsu.cinequest.googleplacesandmaps;
 
+import edu.sjsu.cinequest.HomeActivity;
+import edu.sjsu.cinequest.MainTab;
 import edu.sjsu.cinequest.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SinglePlaceActivity extends Activity {
@@ -113,12 +119,36 @@ public class SinglePlaceActivity extends Activity {
 								
 								Log.d("Place ", name + address + phone + latitude + longitude);
 								
+								
+								
 								// Displaying all the details in the view
 								// single_place.xml
 								TextView lbl_name = (TextView) findViewById(R.id.name);
 								TextView lbl_address = (TextView) findViewById(R.id.address);
 								TextView lbl_phone = (TextView) findViewById(R.id.phone);
 								TextView lbl_location = (TextView) findViewById(R.id.location);
+								
+								final String addressUri = "geo:0,0?q=" + address;
+								final TextView addressView = (TextView) findViewById(R.id.address);
+								addressView.setOnClickListener(new View.OnClickListener() {
+								  @Override
+								  public void onClick(View v) {
+		                                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(addressUri));
+		                                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+		                                startActivity(intent);
+						            }
+						        });
+								
+								final String phoneUri = "tel:" + phone;
+								final TextView phoneView = (TextView) findViewById(R.id.phone);
+                                phoneView.setOnClickListener(new View.OnClickListener() {
+                                  @Override
+                                  public void onClick(View v) {
+        								Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(phoneUri));
+        								startActivity(intent);
+                                  }
+                                });
+								
 								
 								// Check for null data from google
 								// Sometimes place details might missing
@@ -130,7 +160,7 @@ public class SinglePlaceActivity extends Activity {
 								
 								lbl_name.setText(name);
 								lbl_address.setText(address);
-								lbl_phone.setText(Html.fromHtml("<b>Phone:</b> " + phone));
+								lbl_phone.setText(Html.fromHtml(phone));
 								lbl_location.setText(Html.fromHtml("<b>Latitude:</b> " + latitude + ", <b>Longitude:</b> " + longitude));
 							}
 						}

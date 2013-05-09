@@ -110,13 +110,7 @@ public class HomeActivity extends Activity {
         
         Button nearPlacesButton = (Button) findViewById(R.id.goto_near_places);
         nearPlacesButton.setOnClickListener(new OnClickListener() {           
-            @Override
-            /*public void onClick(View v) {
-                Intent i = new Intent();
-                i.setComponent(new ComponentName("com.androidhive.googleplacesandmaps", "com.androidhive.googleplacesandmaps.MainActivity"));
-                //i.putExtra("open_tab", MainTab.NEAR_PLACES_TAB);
-                startActivity(i); */
-            
+            @Override      
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, MainTab.class);
                 i.putExtra("open_tab", MainTab.NEAR_PLACES_TAB);
