@@ -1,0 +1,46 @@
+# view AndroidManifest.xml #generated:56
+-keep class com.google.zxing.client.android.CaptureActivity { <init>(...); }
+
+# view ldpi/res/layout-ldpi/capture.xml #generated:25
+# view res/layout/capture.xml #generated:25
+-keep class com.google.zxing.client.android.ViewfinderView { <init>(...); }
+
+# view res/layout/search_book_contents_list_item.xml #generated:17
+-keep class com.google.zxing.client.android.book.SearchBookContentsListItem { <init>(...); }
+
+# view res/xml/preferences.xml #generated:98
+-keep class com.google.zxing.client.android.pref.BSPlusPreference { <init>(...); }
+
+# view AndroidManifest.xml #generated:28
+-keep class edu.sjsu.cinequest.DVDActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:31
+-keep class edu.sjsu.cinequest.EventsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:40
+-keep class edu.sjsu.cinequest.FilmDetail { <init>(...); }
+
+# view AndroidManifest.xml #generated:34
+-keep class edu.sjsu.cinequest.FilmsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:37
+-keep class edu.sjsu.cinequest.FilmsActivity1 { <init>(...); }
+
+# view AndroidManifest.xml #generated:43
+-keep class edu.sjsu.cinequest.ForumsActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:16
+-keep class edu.sjsu.cinequest.HomeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:49
+-keep class edu.sjsu.cinequest.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:25
+-keep class edu.sjsu.cinequest.MainTab { <init>(...); }
+
+# view AndroidManifest.xml #generated:52
+-keep class edu.sjsu.cinequest.RegistrationActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class edu.sjsu.cinequest.ScheduleActivity { <init>(...); }
+
