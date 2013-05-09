@@ -2,3 +2,14 @@ http://www.youtube.com/watch?feature=player_embedded&v=mX2r7FS-srY
 geo:37.332924,-121.887088?z=17&q= 37.332924,-121.887088(camera 12)
 http://qrcode.kaywa.com/dashboard/
 sms:(408) 295-3378 Send SMS to Cinequest.
+
+cinema id 
+3498 Pretty time bomb p40
+CINEQUEST:FILM:3498
+
+
+6389 Mystery
+6435 THE SCAR
+3483 SOLACE
+
+CINEQUEST:FILM:3483

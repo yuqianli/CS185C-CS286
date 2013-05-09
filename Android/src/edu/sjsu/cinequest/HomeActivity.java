@@ -35,6 +35,7 @@ import edu.sjsu.cinequest.comm.Callback;
 import edu.sjsu.cinequest.comm.ImageManager;
 import edu.sjsu.cinequest.comm.Platform;
 import edu.sjsu.cinequest.comm.QueryManager;
+import edu.sjsu.cinequest.comm.cinequestitem.Filmlet;
 import edu.sjsu.cinequest.comm.cinequestitem.MobileItem;
 import edu.sjsu.cinequest.comm.cinequestitem.Section;
 import edu.sjsu.cinequest.comm.cinequestitem.User;
@@ -298,7 +299,13 @@ public class HomeActivity extends Activity {
 			if (schema.equals(QR_CINEQUEST)) {
 				String fun = parts[1];
 				if (fun.equals(QR_FILM)) {
-					
+					String id = parts[2];
+					Filmlet film = new Filmlet();
+					film.setId(Integer.parseInt(id));
+					Intent intent = new Intent();
+					intent.setClass(HomeActivity.this, FilmDetail.class);
+					intent.putExtra("target", film);
+					startActivity(intent);
 				}
 
 			} else if (schema.equals(QR_SMS)) {
